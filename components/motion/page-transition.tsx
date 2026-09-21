@@ -115,8 +115,9 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_100%,rgba(167,139,250,0.45),rgba(8,9,13,1)_60%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_30%_20%,rgba(200,255,31,0.18),transparent_70%)]" />
+            <div className="absolute inset-0 bg-graphite" />
+            <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_100%,rgba(124,92,245,0.45),transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_30%_20%,rgba(163,217,0,0.2),transparent_70%)]" />
             <motion.span
               className="relative font-display text-2xl font-bold tracking-[0.2em] text-foreground"
               initial={{ opacity: 0, y: 10 }}

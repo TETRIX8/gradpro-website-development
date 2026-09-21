@@ -13,7 +13,7 @@ const ITEMS = [
     name: 'Елена Соколова',
     role: 'CMO, NOVA',
     initials: 'ЕС',
-    accent: 'from-[#c8ff1f] to-[#a78bfa]',
+    accent: 'from-lime to-violet',
   },
   {
     quote:
@@ -21,7 +21,7 @@ const ITEMS = [
     name: 'Артём Ковалёв',
     role: 'Founder, AURA',
     initials: 'АК',
-    accent: 'from-[#a78bfa] to-[#4f7cff]',
+    accent: 'from-violet to-electric',
   },
   {
     quote:
@@ -29,7 +29,7 @@ const ITEMS = [
     name: 'Мария Литвинова',
     role: 'Head of Product, SHIFT',
     initials: 'МЛ',
-    accent: 'from-[#4f7cff] to-[#c8ff1f]',
+    accent: 'from-electric to-lime',
   },
   {
     quote:
@@ -37,7 +37,7 @@ const ITEMS = [
     name: 'Игорь Марченко',
     role: 'Партнёр, бюро MONO',
     initials: 'ИМ',
-    accent: 'from-[#c8ff1f] to-[#4f7cff]',
+    accent: 'from-lime to-electric',
   },
 ]
 
