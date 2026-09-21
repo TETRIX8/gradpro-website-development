@@ -37,9 +37,12 @@ export function Hero() {
 
       <motion.div
         style={{ scale: sceneScale, opacity: sceneOpacity }}
-        className="pointer-events-auto absolute inset-y-0 right-0 w-full opacity-60 md:left-[46%] md:w-[54%] md:opacity-100"
+        className="pointer-events-auto absolute inset-y-0 right-0 w-full md:left-[46%] md:w-[54%]"
       >
-        <Scene variant="blob" className="h-full w-full" deferMs={250} />
+        {/* On phones the object sits behind the copy, so it is shrunk, pushed up-right and dimmed */}
+        <div className="h-full w-full origin-top-right scale-[0.62] opacity-40 [mask-image:linear-gradient(to_bottom,black_40%,transparent_95%)] md:scale-100 md:opacity-100 md:[mask-image:none]">
+          <Scene variant="blob" className="h-full w-full" deferMs={250} />
+        </div>
       </motion.div>
 
       <motion.div
