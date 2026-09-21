@@ -4,6 +4,7 @@ import { Manrope, Unbounded } from 'next/font/google'
 import { Toaster } from 'sonner'
 import { CustomCursor } from '@/components/motion/custom-cursor'
 import { PageTransitionProvider } from '@/components/motion/page-transition'
+import { PreloaderProvider } from '@/components/motion/preloader'
 import './globals.css'
 
 const manrope = Manrope({
@@ -55,7 +56,9 @@ export default function RootLayout({
       className={`dark bg-background ${manrope.variable} ${unbounded.variable}`}
     >
       <body className="antialiased">
-        <PageTransitionProvider>{children}</PageTransitionProvider>
+        <PreloaderProvider>
+          <PageTransitionProvider>{children}</PageTransitionProvider>
+        </PreloaderProvider>
         <CustomCursor />
         <Toaster
           position="bottom-right"
