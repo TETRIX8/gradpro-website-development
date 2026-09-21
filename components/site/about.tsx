@@ -42,8 +42,14 @@ function Word({
 
 export function About() {
   const ref = useRef<HTMLElement>(null)
+  const statementRef = useRef<HTMLParagraphElement>(null)
   const reduced = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 80%', 'end 60%'] })
+  // Word reveal tracks only the statement itself so it fully resolves while the text is on screen
+  const { scrollYProgress: statementProgress } = useScroll({
+    target: statementRef,
+    offset: ['start 92%', 'end 55%'],
+  })
   const objectY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [140, -180])
   const objectRotate = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [-8, 10])
   const words = STATEMENT.split(' ')
@@ -61,11 +67,14 @@ export function About() {
             <span className="h-px w-8 bg-primary" />О нас
           </Reveal>
 
-          <p className="font-display text-[clamp(1.6rem,3.6vw,3.2rem)] font-medium leading-[1.2] tracking-tight text-pretty">
+          <p
+            ref={statementRef}
+            className="font-display text-[clamp(1.6rem,3.6vw,3.2rem)] font-medium leading-[1.2] tracking-tight text-pretty"
+          >
             {reduced
               ? STATEMENT
               : words.map((w, i) => (
-                  <Word key={i} word={w} index={i} total={words.length} progress={scrollYProgress} />
+                  <Word key={i} word={w} index={i} total={words.length} progress={statementProgress} />
                 ))}
           </p>
 
