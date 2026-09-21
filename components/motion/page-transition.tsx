@@ -45,7 +45,12 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
 
   const navigate = useCallback(
     (href: string, origin?: DOMRect | null) => {
-      if (href === pathname) return
+      // Same-page targets (incl. "/#section") only scroll; the veil would never lift because pathname stays the same
+      const targetPath = href.split('#')[0].split('?')[0] || pathname
+      if (targetPath === pathname) {
+        router.push(href)
+        return
+      }
       if (reduced) {
         router.push(href)
         return
@@ -174,7 +179,8 @@ export function TransitionLink({
   ...rest
 }: TransitionLinkProps) {
   const { navigate } = usePageTransition()
-  const isHash = href.startsWith('#')
+  const pathname = usePathname()
+  const isHash = href.startsWith('#') || (href.includes('#') && href.split('#')[0] === pathname)
   const isExternal = /^https?:\/\//.test(href)
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
