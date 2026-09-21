@@ -11,8 +11,8 @@ import { EASE_OUT } from '@/components/motion/reveal'
 import { useIsTouch, useReducedMotion } from '@/hooks/use-motion-prefs'
 
 const ACCENT_GLOW: Record<string, string> = {
-  lime: 'rgba(200,255,31,0.28)',
-  violet: 'rgba(167,139,250,0.32)',
+  lime: 'rgba(163,217,0,0.28)',
+  violet: 'rgba(124,92,245,0.28)',
   blue: 'rgba(79,124,255,0.32)',
 }
 
@@ -98,7 +98,8 @@ export function ProjectCard({
             />
           </motion.div>
 
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-100" />
+          {/* Covers are dark imagery, so the overlay and text stay dark/light independent of the page theme */}
+          <div className="absolute inset-0 bg-gradient-to-t from-graphite/90 via-graphite/20 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-100" />
 
           <motion.div
             aria-hidden
@@ -107,23 +108,23 @@ export function ProjectCard({
           />
 
           <div className="absolute inset-x-0 top-0 flex items-center justify-between p-6 md:p-7">
-            <span className="glass rounded-full px-3 py-1 text-xs font-medium tracking-wide">
+            <span className="rounded-full border border-card/20 bg-graphite/40 px-3 py-1 text-xs font-medium tracking-wide text-card backdrop-blur-md">
               {project.category}
             </span>
-            <span className="font-display text-xs text-muted-foreground">{project.year}</span>
+            <span className="font-display text-xs text-card/70">{project.year}</span>
           </div>
 
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 md:p-7">
             <div className="flex flex-col gap-2">
-              <h3 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
+              <h3 className="font-display text-3xl font-bold tracking-tight text-card md:text-4xl">
                 {project.title}
               </h3>
-              <p className="max-w-md text-sm text-muted-foreground transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+              <p className="max-w-md text-sm text-card/75 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                 {project.tagline}
               </p>
               <ul className="hidden flex-wrap gap-2 pt-1 transition-all delay-75 duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:flex md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                 {project.technologies.slice(0, 4).map((t) => (
-                  <li key={t} className="rounded-full border border-border/80 px-2.5 py-0.5 text-[11px] text-foreground/80">
+                  <li key={t} className="rounded-full border border-card/25 px-2.5 py-0.5 text-[11px] text-card/85">
                     {t}
                   </li>
                 ))}

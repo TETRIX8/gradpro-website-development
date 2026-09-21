@@ -112,12 +112,12 @@ export function CustomCursor() {
         animate={{
           width: ringSize,
           height: ringSize,
-          backgroundColor: hasLabel ? 'rgba(200,255,31,0.96)' : 'rgba(200,255,31,0)',
+          backgroundColor: hasLabel ? 'rgba(163,217,0,0.96)' : 'rgba(163,217,0,0)',
           borderColor: hasLabel
             ? 'rgba(200,255,31,0)'
             : mode === 'link'
               ? 'rgba(200,255,31,0.8)'
-              : 'rgba(255,255,255,0.35)',
+              : 'rgba(15,17,23,0.35)',
           scale: pressed ? 0.88 : 1,
         }}
         transition={

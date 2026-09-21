@@ -38,11 +38,11 @@ function Inner({ children, variant, icon }: BaseProps) {
         className={cn(
           'absolute inset-0 -translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0',
           variant === 'primary' &&
-            'bg-[linear-gradient(100deg,#e6ff7a,#c8ff1f_50%,#a78bfa)]',
+            'bg-[linear-gradient(100deg,#c3ef3a,#a3d900_50%,#7c5cf5)]',
           variant === 'ghost' &&
-            'bg-[linear-gradient(100deg,rgba(200,255,31,0.16),rgba(167,139,250,0.16))]',
+            'bg-[linear-gradient(100deg,rgba(163,217,0,0.18),rgba(124,92,245,0.14))]',
           variant === 'violet' &&
-            'bg-[linear-gradient(100deg,#c4b5fd,#a78bfa_50%,#4f7cff)]',
+            'bg-[linear-gradient(100deg,#9b82f7,#7c5cf5_50%,#3b6cf0)]',
         )}
       />
       <span className="relative z-10">{children}</span>
