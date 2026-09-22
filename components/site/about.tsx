@@ -104,7 +104,7 @@ export function About() {
           <Scene variant="sphere" className="h-full w-full" lazy parallax={0} />
           <div className="glass absolute bottom-6 left-6 rounded-2xl px-5 py-4">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Основано</p>
-            <p className="font-display text-2xl font-semibold">2018</p>
+            <p className="font-display text-2xl font-semibold">2026</p>
           </div>
         </motion.div>
       </div>
