@@ -35,7 +35,7 @@ export function RecentLeads({ rows }: { rows: RecentLead[] }) {
                 key={l.id}
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.15 + i * 0.05, duration: 0.4, ease: EASE as unknown as number[] }}
+                transition={{ delay: 0.15 + i * 0.05, duration: 0.4, ease: EASE }}
               >
                 <Link href={`/admin/leads?open=${l.id}`} className="flex items-center gap-3 px-5 py-3 transition hover:bg-muted/60">
                   <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-muted text-xs font-bold text-muted-foreground">{initials(l.name)}</span>
@@ -96,7 +96,7 @@ export function ActivityFeed({ rows }: { rows: AuditLog[] }) {
                 key={a.id}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 + i * 0.05, duration: 0.4, ease: EASE as unknown as number[] }}
+                transition={{ delay: 0.15 + i * 0.05, duration: 0.4, ease: EASE }}
                 className="relative flex gap-3 py-2.5"
               >
                 <span className="relative z-10 grid size-7 shrink-0 place-items-center rounded-full bg-card ring-1 ring-border">
@@ -156,7 +156,7 @@ export function StatusBreakdown({ data }: { data: { status: string; value: numbe
               key={d.status}
               initial={{ width: 0 }}
               animate={{ width: `${(d.value / total) * 100}%` }}
-              transition={{ duration: 0.9, ease: EASE as unknown as number[] }}
+              transition={{ duration: 0.9, ease: EASE }}
               style={{ background: LEAD_STATUS_META[d.status as LeadStatus]?.chart }}
               className="h-full"
             />

@@ -40,7 +40,7 @@ export function KpiCard({
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: EASE as unknown as number[] }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: EASE }}
       className="admin-card relative overflow-hidden p-5"
     >
       <div className="flex items-start justify-between gap-3">

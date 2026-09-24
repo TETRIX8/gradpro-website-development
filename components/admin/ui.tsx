@@ -16,7 +16,7 @@ import {
 import { createPortal } from "react-dom"
 import { cn } from "@/lib/utils"
 
-export const EASE = [0.22, 1, 0.36, 1] as const
+export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 /* ---------------------------------- Buttons --------------------------------- */
 
@@ -389,7 +389,7 @@ export function Modal({
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.98 }}
-              transition={{ duration: 0.28, ease: EASE as unknown as number[] }}
+              transition={{ duration: 0.28, ease: EASE }}
               className={cn(
                 "relative z-10 flex max-h-[92svh] w-full flex-col overflow-hidden rounded-t-[1.5rem] border border-border bg-popover text-popover-foreground shadow-2xl sm:rounded-[1.5rem]",
                 widths[size],
@@ -452,7 +452,7 @@ export function Drawer({
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.36, ease: EASE as unknown as number[] }}
+              transition={{ duration: 0.36, ease: EASE }}
               className={cn(
                 "absolute inset-y-0 right-0 flex w-full flex-col border-l border-border bg-popover text-popover-foreground shadow-2xl sm:inset-y-3 sm:right-3 sm:rounded-[1.5rem] sm:border",
                 width,
