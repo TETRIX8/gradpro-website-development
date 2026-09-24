@@ -1,6 +1,5 @@
-import { Inbox, Users, Wallet, Percent, Eye, CircleCheck } from "lucide-react"
 import { requireAdminPage } from "@/lib/admin"
-import { fmtLongDate, fmtMoney } from "@/lib/admin/format"
+import { fmtLongDate } from "@/lib/admin/format"
 import {
   getActivitySeries,
   getDashboardKpis,
@@ -46,12 +45,12 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
       />
 
       <section aria-label="Ключевые метрики" className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
-        <KpiCard label="Новые заявки" value={kpis.newLeads.current} previous={kpis.newLeads.previous} icon={Inbox} tone="primary" index={0} spark={spark("leads")} />
-        <KpiCard label="Визиты" value={kpis.visits.current} previous={kpis.visits.previous} icon={Eye} tone="electric" index={1} spark={spark("visits")} />
-        <KpiCard label="Конверсия" value={kpis.conversion.current} previous={kpis.conversion.previous} format={(n) => `${n.toFixed(1)}%`} icon={Percent} tone="accent" index={2} />
-        <KpiCard label="Обработано" value={kpis.processed.current} previous={kpis.processed.previous} icon={CircleCheck} tone="emerald" index={3} spark={spark("conversions")} />
-        <KpiCard label="Доход" value={kpis.revenue.current} previous={kpis.revenue.previous} format={(n) => fmtMoney(Math.round(n))} icon={Wallet} tone="primary" index={4} spark={spark("revenue")} />
-        <KpiCard label="Пользователи" value={kpis.users.current} previous={kpis.users.previous} icon={Users} tone="accent" index={5} />
+        <KpiCard label="Новые заявки" value={kpis.newLeads.current} previous={kpis.newLeads.previous} icon="inbox" tone="primary" index={0} spark={spark("leads")} />
+        <KpiCard label="Визиты" value={kpis.visits.current} previous={kpis.visits.previous} icon="eye" tone="electric" index={1} spark={spark("visits")} />
+        <KpiCard label="Конверсия" value={kpis.conversion.current} previous={kpis.conversion.previous} format="percent" icon="percent" tone="accent" index={2} />
+        <KpiCard label="Обработано" value={kpis.processed.current} previous={kpis.processed.previous} icon="check" tone="emerald" index={3} spark={spark("conversions")} />
+        <KpiCard label="Доход" value={kpis.revenue.current} previous={kpis.revenue.previous} format="money" icon="wallet" tone="primary" index={4} spark={spark("revenue")} />
+        <KpiCard label="Пользователи" value={kpis.users.current} previous={kpis.users.previous} icon="users" tone="accent" index={5} />
       </section>
 
       <QuickActions permissions={admin.permissions} />

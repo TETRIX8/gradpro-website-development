@@ -1,17 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowDownRight, ArrowUpRight, Minus, type LucideIcon } from "lucide-react"
+import { ArrowDownRight, ArrowUpRight, Minus, Inbox, Users, Wallet, Percent, Eye, CircleCheck, type LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AnimatedNumber, EASE } from "@/components/admin/ui"
-import { pctChange } from "@/lib/admin/format"
+import { fmtMoney, pctChange } from "@/lib/admin/format"
+
+// Icons and formatters are resolved here by string key: server components can only pass
+// serializable props to client components, so passing the component/function itself would crash.
+const ICONS = { inbox: Inbox, users: Users, wallet: Wallet, percent: Percent, eye: Eye, check: CircleCheck } satisfies Record<string, LucideIcon>
+const FORMATS: Record<KpiFormat, (n: number) => string> = {
+  number: (n) => n.toLocaleString("ru-RU"),
+  percent: (n) => `${n.toFixed(1)}%`,
+  money: (n) => fmtMoney(Math.round(n)),
+}
+
+export type KpiIcon = keyof typeof ICONS
+export type KpiFormat = "number" | "percent" | "money"
 
 export function KpiCard({
   label,
   value,
   previous,
-  format,
-  icon: Icon,
+  format = "number",
+  icon,
   tone = "primary",
   index = 0,
   spark,
@@ -20,13 +32,15 @@ export function KpiCard({
   label: string
   value: number
   previous: number
-  format?: (n: number) => string
-  icon: LucideIcon
+  format?: KpiFormat
+  icon: KpiIcon
   tone?: "primary" | "accent" | "electric" | "emerald"
   index?: number
   spark?: number[]
   invert?: boolean
 }) {
+  const Icon = ICONS[icon]
+  const formatFn = FORMATS[format]
   const change = pctChange(value, previous)
   const good = invert ? change <= 0 : change >= 0
   const tones = {
@@ -47,7 +61,7 @@ export function KpiCard({
         <div className="min-w-0">
           <p className="text-xs font-medium text-muted-foreground">{label}</p>
           <p className="mt-2 font-display text-2xl font-bold tracking-tight md:text-[1.75rem]">
-            <AnimatedNumber value={value} format={format} />
+            <AnimatedNumber value={value} format={formatFn} />
           </p>
         </div>
         <span className={cn("grid size-10 shrink-0 place-items-center rounded-xl", tones[tone])}>
