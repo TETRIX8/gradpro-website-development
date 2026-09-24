@@ -288,7 +288,7 @@ export function LeadsTable({
                 <tr className="border-b border-border bg-foreground/[0.02] text-left text-xs text-muted-foreground">
                   {canWrite && (
                     <th className="w-10 px-4 py-3">
-                      <CheckBox checked={allOnPage} indeterminate={!allOnPage && someOnPage} onChange={toggleAll} />
+                      <CheckBox checked={allOnPage} indeterminate={!allOnPage && someOnPage} onChange={toggleAll} label="Выбрать все заявки на странице" />
                     </th>
                   )}
                   <SortTh label="Клиент" col="name" query={query} onSort={toggleSort} />
@@ -314,7 +314,7 @@ export function LeadsTable({
                     >
                       {canWrite && (
                         <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
-                          <CheckBox checked={selected.has(r.id)} onChange={() => toggleOne(r.id)} />
+                          <CheckBox checked={selected.has(r.id)} onChange={() => toggleOne(r.id)} label={`Выбрать заявку №${r.id}`} />
                         </td>
                       )}
                       <td className="px-4 py-3">
