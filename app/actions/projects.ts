@@ -1,16 +1,14 @@
 'use server'
 
-import { headers } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 import { asc, eq, sql } from 'drizzle-orm'
-import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { projects, type Project } from '@/lib/db/schema'
+import { requireAdmin as requireStaff } from '@/lib/admin'
 
 async function requireAdmin() {
-  const session = await auth.api.getSession({ headers: await headers() })
-  if (!session?.user) throw new Error('Unauthorized')
-  return session.user.id
+  const admin = await requireStaff('content.write')
+  return admin.id
 }
 
 export type ProjectInput = {
@@ -45,7 +43,7 @@ function validate(input: ProjectInput) {
 function revalidateAll() {
   revalidatePath('/')
   revalidatePath('/projects/[slug]', 'page')
-  revalidatePath('/admin')
+  revalidatePath('/admin/projects')
 }
 
 export async function listAllProjects(): Promise<Project[]> {

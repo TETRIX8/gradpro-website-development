@@ -5,6 +5,7 @@ import { Toaster } from 'sonner'
 import { CustomCursor } from '@/components/motion/custom-cursor'
 import { PageTransitionProvider } from '@/components/motion/page-transition'
 import { PreloaderProvider } from '@/components/motion/preloader'
+import { VisitTracker } from '@/components/site/visit-tracker'
 import './globals.css'
 
 const manrope = Manrope({
@@ -53,13 +54,14 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`dark bg-background ${manrope.variable} ${unbounded.variable}`}
+      className={`bg-background ${manrope.variable} ${unbounded.variable}`}
     >
       <body className="antialiased">
         <PreloaderProvider>
           <PageTransitionProvider>{children}</PageTransitionProvider>
         </PreloaderProvider>
         <CustomCursor />
+        <VisitTracker />
         <Toaster
           position="bottom-right"
           theme="dark"

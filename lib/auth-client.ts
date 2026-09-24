@@ -1,3 +1,17 @@
-import { createAuthClient } from 'better-auth/react'
+"use client"
 
-export const authClient = createAuthClient()
+import { createAuthClient } from "better-auth/react"
+import { adminClient, twoFactorClient } from "better-auth/client/plugins"
+
+export const authClient = createAuthClient({
+  plugins: [
+    adminClient(),
+    twoFactorClient({
+      onTwoFactorRedirect() {
+        window.location.href = "/admin/sign-in?step=2fa"
+      },
+    }),
+  ],
+})
+
+export const { signIn, signOut, useSession } = authClient
