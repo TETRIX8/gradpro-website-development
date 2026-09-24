@@ -32,6 +32,12 @@
   --color-electric: var(--electric);
   --color-graphite: var(--graphite);
   --color-glass: var(--glass);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -72,6 +78,54 @@
   --electric: #3b6cf0;
   --graphite: #0f1117;
   --glass: rgba(255, 255, 255, 0.6);
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f1117;
+  --sidebar-border: rgba(15, 17, 23, 0.08);
+  --sidebar-accent: #f3f4f0;
+  --success: #22c55e;
+  --warning: #f5b83d;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0b0c10;
+  --foreground: #eef0f4;
+  --card: #12141a;
+  --card-foreground: #eef0f4;
+  --popover: #15171e;
+  --popover-foreground: #eef0f4;
+  --primary: #b6f000;
+  --primary-foreground: #0b0c05;
+  --secondary: #1a1d25;
+  --secondary-foreground: #e6e8ee;
+  --muted: #171a21;
+  --muted-foreground: #9aa1b3;
+  --accent: #8b6ff7;
+  --accent-foreground: #ffffff;
+  --destructive: #f0475a;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #b6f000;
+  --glass: rgba(18, 20, 26, 0.6);
+  --sidebar: #0e1015;
+  --sidebar-foreground: #eef0f4;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-accent: #171a21;
+}
+
+.dark .glass {
+  background: linear-gradient(160deg, rgba(24, 26, 34, 0.82), rgba(16, 18, 24, 0.6));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 16px 48px -24px rgba(0, 0, 0, 0.6);
+}
+.dark .grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 @layer base {
@@ -255,8 +309,65 @@
   }
 }
 
+/* Admin panel */
+.admin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--foreground) 18%, transparent) transparent;
+}
+.admin-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.admin-scroll::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--foreground) 18%, transparent);
+}
+.admin-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow:
+    0 1px 2px rgba(15, 17, 23, 0.04),
+    0 12px 32px -24px rgba(15, 17, 23, 0.18);
+}
+.dark .admin-card {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 12px 40px -28px rgba(0, 0, 0, 0.8);
+}
+.admin-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--foreground) 6%, transparent);
+}
+.admin-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--foreground) 6%, transparent), transparent);
+  animation: admin-shimmer 1.6s infinite;
+}
+@keyframes admin-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes admin-ping {
+  75%,
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.animate-admin-ping {
+  animation: admin-ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 /* Reduced-motion: disable purely decorative motion */
 @media (prefers-reduced-motion: reduce) {
+  .animate-admin-ping,
+  .admin-skeleton::after,
   .animate-gradient-shift,
   .animate-pulse-soft,
   .animate-float-y,
