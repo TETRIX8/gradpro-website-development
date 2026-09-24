@@ -6,6 +6,7 @@ import { ArrowDown } from 'lucide-react'
 import { GlowButton } from '@/components/motion/glow-button'
 import { EASE_OUT, SplitWords } from '@/components/motion/reveal'
 import { usePreloader } from '@/components/motion/preloader'
+import { LiquidDrops } from '@/components/site/liquid-drops'
 import { useReducedMotion } from '@/hooks/use-motion-prefs'
 
 const TRUST = ['Awwwards', 'CSS Design Awards', 'Behance', 'Red Dot', 'FWA']
@@ -33,13 +34,10 @@ export function Hero() {
     >
       <div className="grid-lines absolute inset-0" aria-hidden />
       <div
-        className="absolute -left-1/4 top-1/3 h-[60vh] w-[60vh] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.22),transparent_65%)] blur-3xl"
+        className="absolute -left-1/4 top-1/3 h-[60vh] w-[60vh] rounded-full bg-[radial-gradient(circle,rgba(124,92,245,0.16),transparent_65%)] blur-3xl"
         aria-hidden
       />
-      <div
-        className="absolute -right-1/4 top-0 h-[70vh] w-[70vh] rounded-full bg-[radial-gradient(circle,rgba(200,255,31,0.16),transparent_65%)] blur-3xl"
-        aria-hidden
-      />
+      <LiquidDrops active={done} />
 
       <motion.div
         style={{ y: textY, opacity: textOpacity }}
@@ -49,7 +47,7 @@ export function Hero() {
           {...show(0.3)}
           className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground"
         >
-          <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_14px_rgba(200,255,31,0.9)] animate-pulse-soft" />
+          <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_14px_rgba(163,217,0,0.9)] animate-pulse-soft" />
           Digital-агентство полного цикла
         </motion.div>
 
